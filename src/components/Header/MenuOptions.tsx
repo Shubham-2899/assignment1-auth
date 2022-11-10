@@ -1,0 +1,80 @@
+import React from "react";
+import {
+  Avatar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/UserAuthContext";
+
+type Props = {
+  handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
+  anchorElUser: HTMLElement | null;
+  handleCloseUserMenu: () => void;
+};
+
+const MenuOptions = ({
+  handleOpenUserMenu,
+  anchorElUser,
+  handleCloseUserMenu,
+}: Props) => {
+  const { logOut, user, login, setLogin } = useUserAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      sessionStorage.removeItem("UserEmail");
+      setLogin(false);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      {login ? (
+        <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="User" src={require("../../Images/avatar.png")} />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{user?.displayName}</Typography>
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleLogOut();
+              }}
+            >
+              <Typography textAlign="center">Logout</Typography>
+            </MenuItem>
+          </Menu>
+        </Box>
+      ) : null}
+    </>
+  );
+};
+
+export default MenuOptions;
