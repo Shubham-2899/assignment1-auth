@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import "./App.scss";
+import "../src/styles/App.scss";
 import Header from "./components/Header/Header";
 import MTable from "./components/Home/Mtable";
 import Signin from "./components/Signin";

@@ -1,6 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MuiTableContainer from "@mui/material/TableContainer";
 import {
   Table,
@@ -9,7 +7,6 @@ import {
   TableRow,
   Paper,
   Tooltip,
-  TablePagination,
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
@@ -17,27 +14,9 @@ import Loading from "../Loading";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import "../../styles/mtable-styles.scss";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    width: "100px",
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import { StyledTableCell } from "../styled-components/table/StyledTableCell";
+import { StyledTableRow } from "../styled-components/table/StyledTableRow";
+import { StyledTablePagination } from "../styled-components/table/StyledTablePagination";
 
 export default function Mtable() {
   const [page, setPage] = React.useState(0);
@@ -117,14 +96,14 @@ export default function Mtable() {
                     : null}
                 </TableBody>
               </Table>
-              <TablePagination
+              <StyledTablePagination
                 rowsPerPageOptions={[5, 10, 15]}
-                component="div"
                 count={content.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                align="right"
               />
             </MuiTableContainer>
           </div>
