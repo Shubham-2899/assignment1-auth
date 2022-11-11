@@ -11,3 +11,9 @@ body {
   text-decoration: none;
   color: white;
 }
+.links {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

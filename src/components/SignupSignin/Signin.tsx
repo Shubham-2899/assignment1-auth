@@ -9,6 +9,7 @@ import {
   Grid,
   Box,
   Typography,
+  Alert,
 } from "@mui/material";
 import Loading from "../Loading";
 import "./signup-signin-styles.scss";
@@ -63,13 +64,8 @@ const Signin = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {error && <span>{error.message}</span>}
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          {error && <Alert severity="error">{error.toString()}</Alert>}
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -102,11 +98,15 @@ const Signin = () => {
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link to="/">Forgot password?</Link>
-              </Grid> */}
-              <Grid item>
-                Don't have an account? <Link to="/signup">{"Sign Up"}</Link>
+              <Grid item xs>
+                <Link to="/forgot-password" className="links">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item xs>
+                <Link to="/signup" className="links">
+                  {"Create New Account? Sign Up"}
+                </Link>
               </Grid>
             </Grid>
           </Box>

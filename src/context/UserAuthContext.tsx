@@ -9,6 +9,7 @@ import {
   User,
   setPersistence,
   browserSessionPersistence,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase";
 import React from "react";
@@ -48,6 +49,11 @@ export function UserAuthContextProvider({ children }: AuthProviderProps) {
   function logOut() {
     return signOut(auth);
   }
+
+  function resetPassword(email: string) {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider);
@@ -71,6 +77,7 @@ export function UserAuthContextProvider({ children }: AuthProviderProps) {
     googleSignIn,
     login,
     setLogin,
+    resetPassword,
   };
 
   return (

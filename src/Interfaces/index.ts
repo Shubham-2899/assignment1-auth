@@ -25,6 +25,7 @@ export interface AuthContextModel {
   sendPasswordResetEmail?: (email: string) => Promise<void>;
   logOut(): Promise<void>;
   googleSignIn: () => Promise<UserCredential>;
+  resetPassword(email: string): Promise<void>;
 }
 
 export interface IUserData {
@@ -60,7 +61,7 @@ export interface IProduct {
 export interface ServerErrorResponse {
   code: number;
   message: string;
-  errors: Error[];
+  errors: ServerError[];
 }
 
 export interface ServerError {
