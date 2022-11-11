@@ -46,7 +46,7 @@ const Signup = () => {
       userData.username,
       userData.contact_number
     );
-    if (hasErrorsInUserData(validateData) === false) {
+    if (!hasErrorsInUserData(validateData)) {
       try {
         setLoading(true);
         await signUp(userData.email, userData.password, userData.username);

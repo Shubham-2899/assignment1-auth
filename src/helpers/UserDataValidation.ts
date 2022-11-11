@@ -30,7 +30,7 @@ export const validatePassword = (password: string) => {
   if (password.length < 6) {
     return "Password length must be greater than 6";
   } else if (password.length > 10) {
-    return "Password length can not be greater than 10";
+    return "Password length can not be greater than 15";
   }
   return "";
 };
@@ -61,9 +61,6 @@ export const validateContactNumber = (contact_number: string) => {
 };
 
 export const hasErrorsInUserData = (errObj: Errors) => {
-  console.log(
-    "🚀 ~ file: UserDataValidation.ts ~ line 76 ~ hasErrorsInUserData ~ hasErrorsInUserData"
-  );
   if (
     errObj.confirmPassError.length === 0 &&
     errObj.emailError.length === 0 &&

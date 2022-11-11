@@ -29,7 +29,7 @@ const MenuOptions = ({
   const handleLogOut = async () => {
     try {
       await logOut();
-      sessionStorage.removeItem("UserEmail");
+      sessionStorage.removeItem("Auth Token");
       setLogin(false);
       navigate("/");
     } catch (error) {

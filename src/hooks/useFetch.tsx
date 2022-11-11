@@ -12,7 +12,6 @@ const useFetch = (url: string) => {
     axios
       .get(url)
       .then((response) => {
-        // console.log("inside fetch" + response.data);
         setContent(response.data);
       })
       .catch((error) => {

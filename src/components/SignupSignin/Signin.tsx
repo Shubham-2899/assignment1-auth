@@ -13,6 +13,7 @@ import {
 import Loading from "../Loading";
 import "./signup-signin-styles.scss";
 import { useUserAuth } from "../../context/UserAuthContext";
+import { OAuthCredential } from "firebase/auth";
 
 const Signin = () => {
   const [error, setError] = useState<any>("");
@@ -28,8 +29,9 @@ const Signin = () => {
     setError("");
     setLoading(true);
     try {
-      await logIn(email, password);
-      sessionStorage.setItem("UserEmail", email);
+      const res = await logIn(email, password);
+      let token = (res?.user as unknown as OAuthCredential).accessToken;
+      token && sessionStorage.setItem("Auth Token", token);
       setLogin(true);
       navigate("/home");
     } catch (err) {
@@ -39,8 +41,7 @@ const Signin = () => {
   }
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("UserEmail");
-    // console.log(authToken);
+    let authToken = sessionStorage.getItem("Auth Token");
     if (authToken) {
       navigate("/home");
     }
@@ -55,7 +56,6 @@ const Signin = () => {
       {loading ? (
         <Loading />
       ) : (
-        // <Container >
         <Box className="signin">
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
@@ -111,7 +111,6 @@ const Signin = () => {
             </Grid>
           </Box>
         </Box>
-        // </Container>
       )}
     </>
   );

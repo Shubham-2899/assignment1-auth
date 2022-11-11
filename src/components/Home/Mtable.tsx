@@ -38,8 +38,7 @@ export default function Mtable() {
   };
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("UserEmail");
-    // console.log(authToken);
+    let authToken = sessionStorage.getItem("Auth Token");
     if (!authToken) {
       navigate("/");
     }
