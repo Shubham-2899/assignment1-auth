@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import "../src/styles/App.scss";
+import "./App.scss";
 import Header from "./components/Header/Header";
 import MTable from "./components/Home/Mtable";
-import Signin from "./components/Signin";
-import Signup from "./components/Signup";
+import Signin from "./components/SignupSignin/Signin";
+import Signup from "./components/SignupSignin/Signup";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {

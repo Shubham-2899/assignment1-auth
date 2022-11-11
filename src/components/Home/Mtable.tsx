@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import Loading from "../Loading";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
-import "../../styles/mtable-styles.scss";
+import "./mtable-styles.scss";
 import { StyledTableCell } from "../styled-components/table/StyledTableCell";
 import { StyledTableRow } from "../styled-components/table/StyledTableRow";
 import { StyledTablePagination } from "../styled-components/table/StyledTablePagination";

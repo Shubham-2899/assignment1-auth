@@ -2,7 +2,6 @@ import * as React from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserAuth } from "../context/UserAuthContext";
 import {
   Avatar,
   Button,
@@ -11,8 +10,9 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import Loading from "./Loading";
-import "../styles/signup-signin-styles.scss";
+import Loading from "../Loading";
+import "./signup-signin-styles.scss";
+import { useUserAuth } from "../../context/UserAuthContext";
 
 const Signin = () => {
   const [error, setError] = useState<any>("");

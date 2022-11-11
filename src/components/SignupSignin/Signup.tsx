@@ -1,13 +1,8 @@
 import * as React from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link, useNavigate } from "react-router-dom";
-import { Errors, IUserData } from "../Interfaces";
+import { Errors, IUserData } from "../../Interfaces";
 import { ChangeEvent, useState } from "react";
-import {
-  hasErrorsInUserData,
-  userDataValidation,
-} from "../helpers/UserDataValidation";
-import { useUserAuth } from "../context/UserAuthContext";
 import {
   Avatar,
   Button,
@@ -17,9 +12,14 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
-import "../styles/signup-signin-styles.scss";
+import "./signup-signin-styles.scss";
+import { useUserAuth } from "../../context/UserAuthContext";
+import {
+  hasErrorsInUserData,
+  userDataValidation,
+} from "../../helpers/UserDataValidation";
 
 const Signup = () => {
   let userDefault: IUserData = {
