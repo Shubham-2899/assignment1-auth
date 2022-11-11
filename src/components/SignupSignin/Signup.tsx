@@ -107,9 +107,9 @@ const Signup = () => {
                   onChange={onChangeHandler}
                 />
               </Grid>
-              {formErrors.nameError?.length === 0 ? null : (
+              {formErrors.nameError ? (
                 <span>{formErrors.nameError}</span>
-              )}
+              ) : null}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -120,9 +120,9 @@ const Signup = () => {
                   onChange={onChangeHandler}
                 />
               </Grid>
-              {formErrors.contactError?.length === 0 ? null : (
+              {formErrors.contactError ? (
                 <span>{formErrors.contactError}</span>
-              )}
+              ) : null}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -135,9 +135,9 @@ const Signup = () => {
                   onChange={onChangeHandler}
                 />
               </Grid>
-              {formErrors.emailError?.length === 0 ? null : (
+              {formErrors.emailError ? (
                 <span>{formErrors.emailError}</span>
-              )}
+              ) : null}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -150,9 +150,9 @@ const Signup = () => {
                   onChange={onChangeHandler}
                 />
               </Grid>
-              {formErrors.passwordError?.length === 0 ? null : (
+              {formErrors.passwordError ? (
                 <span>{formErrors.passwordError}</span>
-              )}
+              ) : null}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -165,9 +165,9 @@ const Signup = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
-              {formErrors.confirmPassError?.length === 0 ? null : (
+              {formErrors.confirmPassError ? (
                 <span>{formErrors.confirmPassError}</span>
-              )}
+              ) : null}
             </Grid>
             <Button
               type="submit"
@@ -180,7 +180,9 @@ const Signup = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/">Already have an account? Sign in</Link>
+                <Link to="/" className="links">
+                  Already have an account? Sign in
+                </Link>
               </Grid>
             </Grid>
           </Box>

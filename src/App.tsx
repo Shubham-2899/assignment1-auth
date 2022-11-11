@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
+import { ForgotPassword } from "./components/ForgotPassword";
 import Header from "./components/Header/Header";
 import MTable from "./components/Home/Mtable";
 import Signin from "./components/SignupSignin/Signin";
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<MTable />} />
           <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </UserAuthContextProvider>
     </Container>
