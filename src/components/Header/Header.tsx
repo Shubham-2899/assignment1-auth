@@ -39,6 +39,7 @@ const Header = () => {
               handleOpenUserMenu={handleOpenUserMenu}
               handleCloseUserMenu={handleCloseUserMenu}
               anchorElUser={anchorElUser}
+              setAnchorElUser={setAnchorElUser}
             />
           ) : (
             <Button

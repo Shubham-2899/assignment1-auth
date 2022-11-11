@@ -94,17 +94,18 @@ export default function Mtable() {
                           </StyledTableRow>
                         ))
                     : null}
+                  <tr>
+                    <StyledTablePagination
+                      rowsPerPageOptions={[5, 10, 15]}
+                      count={content.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                  </tr>
                 </TableBody>
               </Table>
-              <StyledTablePagination
-                rowsPerPageOptions={[5, 10, 15]}
-                count={content.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                align="right"
-              />
             </MuiTableContainer>
           </div>
         </>

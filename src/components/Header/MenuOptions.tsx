@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -15,16 +15,17 @@ type Props = {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
   anchorElUser: HTMLElement | null;
   handleCloseUserMenu: () => void;
+  setAnchorElUser: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
 };
 
 const MenuOptions = ({
   handleOpenUserMenu,
   anchorElUser,
   handleCloseUserMenu,
+  setAnchorElUser,
 }: Props) => {
   const { logOut, user, login, setLogin } = useUserAuth();
   const navigate = useNavigate();
-
   const handleLogOut = async () => {
     try {
       await logOut();
@@ -35,6 +36,11 @@ const MenuOptions = ({
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    setAnchorElUser(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
