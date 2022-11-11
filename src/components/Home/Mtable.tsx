@@ -53,7 +53,12 @@ export default function Mtable() {
       ) : (
         <>
           <div className="outerTableContainer">
-            <Typography variant="h3">Products</Typography>
+            <Typography
+              variant="h3"
+              sx={{ fontSize: "2rem", paddingTop: "15px" }}
+            >
+              Products
+            </Typography>
             <MuiTableContainer component={Paper} className="root">
               <Table className="tableRoot" aria-label="customized table">
                 <TableHead>
