@@ -7,7 +7,6 @@ import {
   ArcElement,
   ChartOptions,
 } from "chart.js";
-import { Card, CardContent } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -20,7 +19,7 @@ export const options: ChartOptions<"pie"> = {
   indexAxis: "x",
   elements: {
     bar: {
-      borderWidth: 2,
+      borderWidth: 1,
     },
   },
   responsive: true,
@@ -42,14 +41,11 @@ const PieChart = ({ stock, categories }: Props) => {
       {
         label: "Stock Remaining",
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(255, 208, 89, 0.2)",
-          "rgba(80, 195, 195, 0.2)",
+          "rgb(43, 177, 0, 1)",
+          "rgb(174,177, 0, 1)",
+          "rgb(255,165, 0, 1)",
+          "rgb(255,47, 0, 1)",
+          "rgb(255,0, 0, 1)",
           "rgba(151, 110, 255, 0.2)",
           "rgba(255, 159, 70, 0.2)",
         ],
@@ -61,14 +57,18 @@ const PieChart = ({ stock, categories }: Props) => {
   };
 
   return (
-    // <div style={{ maxWidth: "500px", height: "500px" }}>
-    <Card sx={{ maxWidth: "500px", maxHeight: "550px" }} raised={true}>
-      <CardContent>
-        <h3>Pie Chart</h3>
-        <Pie data={data} options={options} />
-      </CardContent>
-    </Card>
-    // </div>
+    <div
+      style={{
+        maxWidth: "500px",
+        height: "550px",
+        border: "10px solid #ffffff",
+        borderRadius: "8px",
+        boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
+      }}
+    >
+      <h3>Pie Chart</h3>
+      <Pie data={data} options={options} />
+    </div>
   );
 };
 

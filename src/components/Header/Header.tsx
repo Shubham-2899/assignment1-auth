@@ -6,6 +6,8 @@ import {
   Drawer,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
@@ -13,13 +15,15 @@ import { Link } from "react-router-dom";
 import MenuOptions from "./MenuOptions";
 import { useUserAuth } from "../../context/UserAuthContext";
 import Sidebar from "../Sidebar/Sidebar";
+import MenuIcon from "@mui/icons-material/Menu";
 const drawerWidth = 200;
 const appbarHeight = 65;
 const Header = () => {
   const { login, setLogin } = useUserAuth();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -44,9 +48,15 @@ const Header = () => {
     <>
       <AppBar sx={{ background: "#063970", height: appbarHeight }}>
         <Toolbar>
-          <Button onClick={handleDrawerToggle}>
-            <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} />
-          </Button>
+          {matches ? (
+            <Button onClick={handleDrawerToggle} sx={{ color: "white" }}>
+              <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} />
+            </Button>
+          ) : (
+            <Button onClick={handleDrawerToggle} sx={{ color: "white" }}>
+              <MenuIcon sx={{ transform: "scale(2)" }} />
+            </Button>
+          )}
 
           {login ? (
             <Box
@@ -54,7 +64,6 @@ const Header = () => {
               sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
               aria-label="mailbox folders"
             >
-              {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
               <Drawer
                 variant="temporary"
                 open={mobileOpen}
@@ -87,7 +96,7 @@ const Header = () => {
             </Box>
           ) : null}
           <Typography sx={{ fontSize: "2rem", paddingLeft: "8%" }}>
-            Assignment 1
+            Products
           </Typography>
           {login ? (
             <MenuOptions

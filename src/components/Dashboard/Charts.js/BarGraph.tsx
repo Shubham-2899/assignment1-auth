@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import type { ChartOptions } from "chart.js";
-import { Box, Card } from "@mui/material";
 
 ChartJS.register(
   CategoryScale,
@@ -38,11 +37,11 @@ export const options: ChartOptions<"bar"> = {
   plugins: {
     legend: {
       display: true,
-      position: "top",
+      position: "bottom",
     },
     title: {
       display: true,
-      text: "Bar Graph - stoks remaining per category",
+      text: "Remaining Stock Per Category",
     },
   },
 };
@@ -51,8 +50,15 @@ const BarGraph = ({ stock, categories }: Props) => {
     labels: categories,
     datasets: [
       {
-        label: "Stock Remaining",
-        backgroundColor: "rgba(75,192,192,1)",
+        label: "Remaining Stock ",
+        backgroundColor: [
+          "rgb(252, 107, 3)",
+          "rgb(43, 177, 0, 1)",
+          "rgb(174,177, 0, 1)",
+          "rgb(255,165, 0, 1)",
+          "rgb(255,47, 0, 1)",
+          "rgb(255,0, 0, 1)",
+        ],
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
         data: stock,
@@ -60,20 +66,25 @@ const BarGraph = ({ stock, categories }: Props) => {
     ],
   };
 
+  const total = stock.reduce((acc, curr) => acc + curr, 0);
+
   return (
-    // <div
-    //   style={{ maxWidth: "500px", height: "500px" }}
-    //   className={matches ? "barGraph" : undefined}
-    // >
-    <Box sx={{ maxWidth: "500px" }}>
-      <Card raised={true} sx={{ maxheight: "500px" }}>
-        {/* <CardContent sx={{ maxHeight: "500px" }}> */}
-        <h3 style={{ padding: "15px" }}>Bar Graph</h3>
-        <Bar data={data} options={options} />
-        {/* </CardContent> */}
-      </Card>
-    </Box>
-    // </div>
+    <div
+      style={{
+        maxWidth: "500px",
+        height: "500px",
+        border: "10px solid #ffffff",
+        borderRadius: "8px",
+        boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
+      }}
+    >
+      <h3 style={{ padding: "15px" }}>Bar Graph</h3>
+      <Bar data={data} options={options} />
+      <div style={{ marginTop: "50px" }}>
+        <h3>Total Stock Remaining- {total}</h3>
+        <h5>Note -This data is filtered by the Price range</h5>
+      </div>
+    </div>
   );
 };
 

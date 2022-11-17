@@ -1,6 +1,7 @@
-import React from "react";
-import { useAppSelector } from "../hooks/reduxHooks";
-import Loading from "./Loading";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import Loading from "../Loading";
 
 type Props = {};
 
@@ -9,6 +10,15 @@ type Props = {};
 
 const Products = (props: Props) => {
   const { products, loading } = useAppSelector((state) => state.products);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+    if (!authToken) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

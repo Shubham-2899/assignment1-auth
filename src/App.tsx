@@ -5,7 +5,7 @@ import { ForgotPassword } from "./components/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Header from "./components/Header/Header";
 import MTable from "./components/Home/Mtable";
-import Products from "./components/Products";
+import Products from "./components/Products/Products";
 import Signin from "./components/SignupSignin/Signin";
 import Signup from "./components/SignupSignin/Signup";
 import { UserAuthContextProvider } from "./context/UserAuthContext";

@@ -3,6 +3,9 @@
   flex-grow: 1;
   margin-left: 180px;
   margin-top: 100px;
+  border: "10px solid #ffffff";
+  border-radius: 8px;
+  box-shadow: "5px 12px 15px rgba(0, 0, 0, 0.3)";
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -15,6 +18,10 @@
   .dashboardContainer {
     width: 405px;
     margin: 100px auto;
+    padding-left: 30px;
+  }
+  .title {
+    font-size: 24px !important;
   }
 }
 @media (min-width: 1200px) {

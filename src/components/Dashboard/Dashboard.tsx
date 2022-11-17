@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getfilterdData,
   getCategories,
@@ -17,27 +18,38 @@ type Props = {};
 
 const Dashboard = (props: Props) => {
   const { products, filter } = useAppSelector((state) => state.products);
-
+  const navigate = useNavigate();
   const filteredData = getfilterdData(products, filter);
   const categories = getCategories(filteredData);
   const stocks = getStockRemainingPerCategory(filteredData, categories);
 
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+    if (!authToken) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Box className="dashboardContainer">
-        <Box
-          sx={{
+        <div
+          style={{
             display: "flex",
             justifyContent: "space-between",
-            mb: "15px",
+            marginBottom: "15px",
             border: "10px solid #ffffff",
             borderRadius: "8px",
             boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
+            maxWidth: "1086px",
           }}
         >
-          <Typography variant="h4">PRODUCT ANALYSIS</Typography>
+          <Typography variant="h4" className="title">
+            PRODUCT ANALYSIS
+          </Typography>
           <Filter />
-        </Box>
+        </div>
         <Grid
           container
           spacing={{ xs: 2, md: 2, sm: 2 }}

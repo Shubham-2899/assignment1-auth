@@ -26,10 +26,6 @@ const Filter = (props: Props) => {
     } = event;
     setFilterValue(value);
     const filterObject = createFilterObject(value);
-    console.log(
-      "🚀 ~ file: Filter.tsx ~ line 29 ~ handleChange ~ filterObject",
-      filterObject
-    );
     dispatch(setFilter(filterObject));
   };
 
