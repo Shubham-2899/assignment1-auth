@@ -69,3 +69,22 @@ export interface ServerError {
   domain: string;
   reason: string;
 }
+
+export interface IProducts {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+export interface IChartsData {
+  category: string;
+  stock: number;
+}

@@ -34,7 +34,7 @@ const Signin = () => {
       let token = (res?.user as unknown as OAuthCredential).accessToken;
       token && sessionStorage.setItem("Auth Token", token);
       setLogin(true);
-      navigate("/home");
+      navigate("/dashboard");
     } catch (err) {
       setError(err);
     }
@@ -44,7 +44,7 @@ const Signin = () => {
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
     if (authToken) {
-      navigate("/home");
+      navigate("/dashboard");
     }
     if (!authToken) {
       navigate("/");

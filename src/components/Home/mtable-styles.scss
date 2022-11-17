@@ -18,10 +18,12 @@
 .outerTableContainer {
   width: 900px;
   margin-top: 50px;
+  margin-left: 240px;
 }
 @media (min-width: 600px) and (max-width: 900px) {
   .outerTableContainer {
     width: 600px;
+    margin-left: 240px;
   }
   .tableRoot {
     min-width: 600px;
@@ -38,5 +40,6 @@
 @media (min-width: 1200px) {
   .outerTableContainer {
     width: 1200px;
+    margin-left: 120px;
   }
 }
