@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../Interfaces";
 
 const useFetch = (url: string) => {
-  const [content, setContent] = useState<IProduct[]>([]);
+  const [content, setContent] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 

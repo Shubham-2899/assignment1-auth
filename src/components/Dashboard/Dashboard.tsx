@@ -6,7 +6,8 @@ import {
   getCategories,
   getStockRemainingPerCategory,
 } from "../../helpers/DashboardHelpers";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { getProducts } from "../../redux/features/productsSlice";
 import BarGraph from "./Charts.js/BarGraph";
 import DoughnutChart from "./Charts.js/DoughnutChart";
 import LineChart from "./Charts.js/LineChart";
@@ -18,6 +19,7 @@ type Props = {};
 
 const Dashboard = (props: Props) => {
   const { products, filter } = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const filteredData = getfilterdData(products, filter);
   const categories = getCategories(filteredData);
@@ -30,6 +32,11 @@ const Dashboard = (props: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>

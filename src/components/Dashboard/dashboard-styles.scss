@@ -8,6 +8,13 @@
   box-shadow: "5px 12px 15px rgba(0, 0, 0, 0.3)";
 }
 
+.resetBtn {
+  position: absolute;
+  // top: 22.5%;
+  width: 15%;
+  right: 9%;
+}
+
 @media (min-width: 600px) and (max-width: 900px) {
   .dashboardContainer {
     min-width: 600px;
@@ -23,9 +30,24 @@
   .title {
     font-size: 24px !important;
   }
+  .gridItem {
+    display: flex;
+    flex-direction: column;
+  }
+  .resetBtn {
+    position: absolute;
+    top: 107px;
+    width: 15%;
+  }
+  .chipContainer {
+    width: 100% !important;
+  }
 }
 @media (min-width: 1200px) {
   .dashboardContainer {
     margin-left: 100px;
+  }
+  .resetBtn {
+    width: 10%;
   }
 }

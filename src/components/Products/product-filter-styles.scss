@@ -1,0 +1,16 @@
+.categorytext {
+  list-style: none;
+  padding: 10px;
+  text-transform: lowercase;
+  color: #006bb4;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+@media (min-width: 0px) and (max-width: 600px) {
+  .filters-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

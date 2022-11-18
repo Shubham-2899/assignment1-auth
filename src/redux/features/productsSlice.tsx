@@ -10,7 +10,7 @@ export const getProducts = createAsyncThunk<IProducts[]>(
     // console.log("🚀 ~ file: productsSlice.tsx ~ line 10 ~ response", response);
 
     const data = await response.json();
-    // console.log("🚀 ~ file: productsSlice.tsx ~ line 13 ~ data", data);
+    // console.log("🚀 ~ file: productsSlice.tsx ~ line 13 ~ data", data.products);
     return data.products;
   }
 );
@@ -25,6 +25,8 @@ type ProductsState = {
   products: IProducts[];
   loading: boolean;
   filter: filterObject;
+  ownProductsAPIData: IProducts[];
+  ownFilters: string[];
 };
 
 const initialFilter: filterObject = {
@@ -37,6 +39,8 @@ const initialState: ProductsState = {
   products: [],
   loading: false,
   filter: initialFilter,
+  ownProductsAPIData: [],
+  ownFilters: [],
 };
 
 const productsSlice = createSlice({
@@ -45,6 +49,23 @@ const productsSlice = createSlice({
   reducers: {
     setFilter: (state, action) => {
       state.filter = action.payload;
+    },
+    setOwnProducts: (state, action) => {
+      state.ownProductsAPIData = action.payload;
+    },
+    resetOwnProducts: (state) => {
+      state.ownProductsAPIData = [];
+    },
+    setOwnFilters: (state, action) => {
+      if (state.ownFilters.indexOf(action.payload) === -1)
+        state.ownFilters = [...state.ownFilters, action.payload];
+    },
+    removeOwnFilter: (state, action) => {
+      const filters = state.ownFilters;
+      state.ownFilters = filters.filter((filter) => filter !== action.payload);
+    },
+    resetOwnFilters: (state) => {
+      state.ownFilters = [];
     },
   },
   extraReducers: (builder) => {
@@ -62,6 +83,13 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setFilter } = productsSlice.actions;
+export const {
+  setFilter,
+  setOwnProducts,
+  setOwnFilters,
+  resetOwnFilters,
+  resetOwnProducts,
+  removeOwnFilter,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
