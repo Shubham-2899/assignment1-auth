@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { IProduct } from "../Interfaces";
 
 const useFetch = (url: string) => {
   const [content, setContent] = useState<any[]>([]);
