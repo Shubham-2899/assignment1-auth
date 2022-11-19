@@ -1,8 +1,9 @@
 import { Chip } from "@mui/material";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { removeOwnFilter } from "../../redux/features/productsSlice";
-import "../Dashboard/dashboard-styles.scss";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { removeOwnFilter } from "../../../redux/features/productsSlice";
+import "../../Dashboard/dashboard-styles.scss";
+
 type Props = {};
 
 const FilterChip = (props: Props) => {

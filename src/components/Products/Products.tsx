@@ -8,11 +8,12 @@ import {
   setOwnProducts,
 } from "../../redux/features/productsSlice";
 import Loading from "../Loading";
-import EnhancedTable from "./EnhancedTable";
-import ProductFilter from "./ProductFilter";
+import EnhancedTable from "./Table/EnhancedTable";
+import ProductFilter from "./Filters/ProductFilter";
 import "../Dashboard/dashboard-styles.scss";
 import { Search } from "@mui/icons-material";
-import FilterChip from "./FilterChip";
+import FilterChip from "./Filters/FilterChip";
+import { searchFromFilteredData } from "../../helpers/ProductsPageHelpers";
 type Props = {};
 
 const Products = (props: Props) => {
@@ -24,31 +25,24 @@ const Products = (props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000?q=${query}`);
+      const res = await axios.get(
+        `https://backend-products-api.onrender.com?q=${query}`
+      );
       dispatch(setOwnProducts(res.data));
     };
-    const keys = ["title", "category", "description"];
-    if (query.length > 2 && ownFilters.length > 0) {
-      dispatch(
-        setOwnProducts(
-          ownProductsAPIData.filter(
-            (itam) =>
-              ownFilters.some((key) => itam.category === key) &&
-              keys.some((key) =>
-                itam[key as keyof typeof itam]
-                  .toString()
-                  .toLowerCase()
-                  .includes(query)
-              )
-          )
-        )
+    if (query.length > 0 && ownFilters.length > 0) {
+      const data = searchFromFilteredData(
+        ownFilters,
+        ownProductsAPIData,
+        query
       );
+      dispatch(setOwnProducts(data));
     } else if (query.length > 2) {
       fetchData();
     } else if (query.length === 0 && ownFilters.length > 0) {
       const fetchData = async () => {
         const res = await axios.get(
-          `http://localhost:5000/filter?q=${ownFilters.toString()}`
+          `https://backend-products-api.onrender.com/filter?q=${ownFilters.toString()}`
         );
         dispatch(setOwnProducts(res.data));
       };
@@ -81,7 +75,7 @@ const Products = (props: Props) => {
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
             <Grid item xs={4} sm={3} md={3}>
-              <div style={{ width: "270px", height: "35px" }}>
+              <div className="search">
                 <Search
                   sx={{
                     position: "absolute",
@@ -104,15 +98,17 @@ const Products = (props: Props) => {
             <Grid item xs={4} sm={5} md={9}>
               <div className="gridItem">
                 <FilterChip />
-                <button
-                  onClick={() => {
-                    dispatch(resetOwnFilters());
-                  }}
-                  disabled={ownFilters.length > 0 ? false : true}
-                  className="resetBtn"
-                >
-                  Reset Filters
-                </button>
+                <div style={{ alignSelf: "center" }}>
+                  <button
+                    onClick={() => {
+                      dispatch(resetOwnFilters());
+                    }}
+                    disabled={ownFilters.length > 0 ? false : true}
+                    className="resetBtn"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
               </div>
             </Grid>
             <Grid item xs={4} sm={3} md={3}>

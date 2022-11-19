@@ -9,10 +9,16 @@
 }
 
 .resetBtn {
-  position: absolute;
-  // top: 22.5%;
-  width: 15%;
-  right: 9%;
+  // position: absolute;
+  // width: 15%;
+  // right: 9%;
+}
+.search {
+  width: 270px;
+  height: 35px;
+}
+.gridItem {
+  display: flex;
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -33,21 +39,25 @@
   .gridItem {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   .resetBtn {
-    position: absolute;
-    top: 107px;
-    width: 15%;
+    // position: absolute;
+    // top: 107px;
+    // width: 15%;
   }
   .chipContainer {
     width: 100% !important;
+  }
+  .search {
+    width: 100%;
   }
 }
 @media (min-width: 1200px) {
   .dashboardContainer {
     margin-left: 100px;
   }
-  .resetBtn {
-    width: 10%;
-  }
+  // .resetBtn {
+  //   width: 10%;
+  // }
 }

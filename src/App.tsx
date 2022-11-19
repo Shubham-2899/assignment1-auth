@@ -12,6 +12,7 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import { useAppDispatch } from "./hooks/reduxHooks";
 import { getProducts } from "./redux/features/productsSlice";
 import { useEffect } from "react";
+import Testing from "./components/Testing";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/products" element={<Products />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/test" element={<Testing />} />
         </Routes>
       </UserAuthContextProvider>
     </Container>

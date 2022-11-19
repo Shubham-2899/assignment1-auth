@@ -7,10 +7,7 @@ export const getProducts = createAsyncThunk<IProducts[]>(
     const response = await fetch(
       `https://dummyjson.com/products?skip=5&limit=70`
     );
-    // console.log("🚀 ~ file: productsSlice.tsx ~ line 10 ~ response", response);
-
     const data = await response.json();
-    // console.log("🚀 ~ file: productsSlice.tsx ~ line 13 ~ data", data.products);
     return data.products;
   }
 );
