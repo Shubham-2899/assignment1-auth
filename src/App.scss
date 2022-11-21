@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
+$color_1: red;
+$font-family_1: "Roboto", sans-serif;
 body {
   display: flex;
   min-height: 100vh;
@@ -18,34 +19,9 @@ body {
   }
 }
 
-.linkSidebar {
-  display: flex;
-  padding: 15px 25px;
-  gap: 35px;
-  transition: all 0.5s;
-  text-decoration: none;
-}
-.linkSidebar:hover {
-  background: lightskyblue;
-  color: #000;
-  transition: all 0.5s;
-}
-// .active {
-//   background: lightskyblue;
-//   color: #000;
-// }
-.icon,
-.link_text {
-  font-size: 20px;
-}
-
-.CardRoot {
-  max-width: 500px;
-  max-height: 500px;
-}
-
-@media (min-width: 0px) and (max-width: 600px) {
-  .CardRoot {
-    max-width: 400px !important;
-  }
+span {
+  font-family: $font-family_1;
+  font-size: 14px;
+  color: $color_1;
+  padding: 5px 0px 10px 16px;
 }

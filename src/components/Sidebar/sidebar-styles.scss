@@ -1,0 +1,17 @@
+.linkSidebar {
+  display: flex;
+  padding: 15px 25px;
+  gap: 35px;
+  transition: all 0.5s;
+  text-decoration: none;
+  width: 100%;
+  &:hover {
+    background: lightskyblue;
+    color: #000;
+    transition: all 0.5s;
+  }
+  .icon,
+  .link_text {
+    font-size: 20px;
+  }
+}

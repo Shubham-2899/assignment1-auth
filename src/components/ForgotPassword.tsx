@@ -63,7 +63,7 @@ export const ForgotPassword = (props: Props) => {
           type="submit"
           fullWidth
           variant="contained"
-          className="formBtn"
+          sx={{ margin: "24px 0 16px 0 !important" }}
           disabled={loading}
         >
           Submit

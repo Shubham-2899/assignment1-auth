@@ -14,9 +14,8 @@ import "../Dashboard/dashboard-styles.scss";
 import { Search } from "@mui/icons-material";
 import FilterChip from "./Filters/FilterChip";
 import { searchFromFilteredData } from "../../helpers/ProductsPageHelpers";
-type Props = {};
 
-const Products = (props: Props) => {
+const Products = () => {
   const { loading, ownProductsAPIData, ownFilters } = useAppSelector(
     (state) => state.products
   );
@@ -56,7 +55,7 @@ const Products = (props: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
+    let authToken = localStorage.getItem("Auth Token");
     if (!authToken) {
       navigate("/");
     }
@@ -68,57 +67,49 @@ const Products = (props: Props) => {
       {loading ? (
         <Loading />
       ) : (
-        <Box className="dashboardContainer">
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            <Grid item xs={4} sm={3} md={3}>
-              <div className="search">
-                <Search
-                  sx={{
-                    position: "absolute",
-                    padding: "7px 7px 7px 0px",
-                    minWidth: "45px",
-                  }}
-                />
-                <input
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                  }}
-                  type="search"
-                  placeholder="Search..."
-                  onChange={(e) => setQuery(e.target.value.toLowerCase())}
-                />
-              </div>
-            </Grid>
-            <Grid item xs={4} sm={5} md={9}>
-              <div className="gridItem">
-                <FilterChip />
-                <div style={{ alignSelf: "center" }}>
-                  <button
-                    onClick={() => {
-                      dispatch(resetOwnFilters());
-                    }}
-                    disabled={ownFilters.length > 0 ? false : true}
-                    className="resetBtn"
-                  >
-                    Reset Filters
-                  </button>
+        <>
+          <Box className="productContainer">
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              <Grid item xs={4} sm={3} md={3}>
+                <div className="searchContainer">
+                  <Search className="searchIcon" />
+                  <input
+                    type="search"
+                    placeholder="Search..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                  />
                 </div>
-              </div>
+              </Grid>
+              <Grid item xs={4} sm={5} md={9}>
+                <div className="gridItem">
+                  <FilterChip />
+                  <div style={{ alignSelf: "center" }}>
+                    <button
+                      onClick={() => {
+                        dispatch(resetOwnFilters());
+                        setQuery("");
+                      }}
+                      disabled={ownFilters.length > 0 ? false : true}
+                    >
+                      Reset Filters
+                    </button>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4} sm={2} md={3}>
+                <ProductFilter />
+              </Grid>
+              <Grid item xs={4} sm={6} md={9}>
+                <EnhancedTable data={ownProductsAPIData} />
+              </Grid>
             </Grid>
-            <Grid item xs={4} sm={3} md={3}>
-              <ProductFilter />
-            </Grid>
-            <Grid item xs={4} sm={5} md={9}>
-              <EnhancedTable data={ownProductsAPIData} />
-            </Grid>
-          </Grid>
-        </Box>
+          </Box>
+        </>
       )}
       ;
     </>

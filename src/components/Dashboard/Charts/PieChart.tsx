@@ -7,6 +7,7 @@ import {
   ArcElement,
   ChartOptions,
 } from "chart.js";
+import "./chart-styles.scss";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -57,15 +58,7 @@ const PieChart = ({ stock, categories }: Props) => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "500px",
-        height: "550px",
-        border: "10px solid #ffffff",
-        borderRadius: "8px",
-        boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
-      }}
-    >
+    <div className="pieChartContainer">
       <h3>Pie Chart</h3>
       <Pie data={data} options={options} />
     </div>

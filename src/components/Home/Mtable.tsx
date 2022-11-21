@@ -17,7 +17,6 @@ import "./mtable-styles.scss";
 import { StyledTableCell } from "../styled-components/table/StyledTableCell";
 import { StyledTableRow } from "../styled-components/table/StyledTableRow";
 import { StyledTablePagination } from "../styled-components/table/StyledTablePagination";
-
 export default function Mtable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -38,7 +37,7 @@ export default function Mtable() {
   };
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
+    let authToken = localStorage.getItem("Auth Token");
     if (!authToken) {
       navigate("/");
     }

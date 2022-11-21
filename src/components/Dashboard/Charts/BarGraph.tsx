@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import type { ChartOptions } from "chart.js";
+import "./chart-styles.scss";
 
 ChartJS.register(
   CategoryScale,
@@ -69,15 +70,7 @@ const BarGraph = ({ stock, categories }: Props) => {
   const total = stock.reduce((acc, curr) => acc + curr, 0);
 
   return (
-    <div
-      style={{
-        maxWidth: "500px",
-        height: "500px",
-        border: "10px solid #ffffff",
-        borderRadius: "8px",
-        boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
-      }}
-    >
+    <div className="chartContainer">
       <h3 style={{ padding: "15px" }}>Bar Graph</h3>
       <Bar data={data} options={options} />
       <div style={{ marginTop: "50px" }}>

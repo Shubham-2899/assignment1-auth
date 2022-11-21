@@ -4,36 +4,23 @@ import "./App.scss";
 import { ForgotPassword } from "./components/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Header from "./components/Header/Header";
-import MTable from "./components/Home/Mtable";
 import Products from "./components/Products/Products";
 import Signin from "./components/SignupSignin/Signin";
 import Signup from "./components/SignupSignin/Signup";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
-import { useAppDispatch } from "./hooks/reduxHooks";
-import { getProducts } from "./redux/features/productsSlice";
-import { useEffect } from "react";
-import Testing from "./components/Testing";
 
 function App() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <Container>
       <UserAuthContextProvider>
         <Header />
         <Routes>
-          <Route path="/home" element={<MTable />} />
+          {/* <Route path="/home" element={<MTable />} /> */}
           <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/products" element={<Products />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/test" element={<Testing />} />
         </Routes>
       </UserAuthContextProvider>
     </Container>

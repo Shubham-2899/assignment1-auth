@@ -37,7 +37,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
+    let authToken = localStorage.getItem("Auth Token");
     if (authToken?.length) {
       setLogin(true);
     }
@@ -77,7 +77,7 @@ const Header = () => {
                   },
                 }}
               >
-                <Sidebar />
+                <Sidebar handleDrawerToggle={handleDrawerToggle} />
               </Drawer>
               <Drawer
                 variant="permanent"
@@ -91,7 +91,7 @@ const Header = () => {
                 }}
                 open
               >
-                <Sidebar />
+                <Sidebar handleDrawerToggle={handleDrawerToggle} />
               </Drawer>
             </Box>
           ) : null}

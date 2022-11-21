@@ -11,6 +11,7 @@ import {
   LineElement,
   ChartOptions,
 } from "chart.js";
+import "./chart-styles.scss";
 
 ChartJS.register(
   CategoryScale,
@@ -56,15 +57,7 @@ const LineChart = ({ stock, categories }: Props) => {
   const total = stock.reduce((acc, curr) => acc + curr, 0);
 
   return (
-    <div
-      style={{
-        maxWidth: "500px",
-        height: "500px",
-        border: "10px solid #ffffff",
-        borderRadius: "8px",
-        boxShadow: "5px 12px 15px rgba(0, 0, 0, 0.3)",
-      }}
-    >
+    <div className="chartContainer">
       <h3>Line Chart</h3>
       <Line data={data} options={options} />
       <div style={{ marginTop: "50px" }}>

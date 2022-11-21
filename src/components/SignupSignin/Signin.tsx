@@ -21,10 +21,9 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const { logIn, setLogin } = useUserAuth();
+  const { logIn, setLogin, user } = useUserAuth();
 
   const [password, setPassword] = useState("");
-
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -32,7 +31,9 @@ const Signin = () => {
     try {
       const res = await logIn(email, password);
       let token = (res?.user as unknown as OAuthCredential).accessToken;
-      token && sessionStorage.setItem("Auth Token", token);
+      token && localStorage.setItem("Auth Token", token);
+      const userData = JSON.stringify(user);
+      userData && localStorage.setItem("user", userData);
       setLogin(true);
       navigate("/dashboard");
     } catch (err) {
@@ -42,12 +43,9 @@ const Signin = () => {
   }
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
+    let authToken = localStorage.getItem("Auth Token");
     if (authToken) {
       navigate("/dashboard");
-    }
-    if (!authToken) {
-      navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

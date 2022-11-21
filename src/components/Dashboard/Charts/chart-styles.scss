@@ -1,0 +1,23 @@
+@mixin chart-container-border {
+  border: 10px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 5px 12px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chartContainer {
+  max-width: 500px;
+  height: 500px;
+  @include chart-container-border();
+}
+
+.pieChartContainer {
+  max-width: 500px;
+  height: 550px;
+  @include chart-container-border();
+}
+
+.doughnutContainer {
+  max-width: 510px;
+  height: 550px;
+  @include chart-container-border();
+}

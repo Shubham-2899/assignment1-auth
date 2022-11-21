@@ -8,8 +8,8 @@ import {
   signInWithPopup,
   User,
   setPersistence,
-  browserSessionPersistence,
   sendPasswordResetEmail,
+  browserLocalPersistence,
 } from "firebase/auth";
 import { auth } from "../firebase";
 import React from "react";
@@ -39,7 +39,7 @@ export function UserAuthContextProvider({ children }: AuthProviderProps) {
     //   const persistence = false  //remember me functionality
     //  ? auth.Persistence.LOCAL
     //  : auth.Auth.Persistence.SESSION;
-    await setPersistence(auth, browserSessionPersistence);
+    await setPersistence(auth, browserLocalPersistence);
     return signInWithEmailAndPassword(auth, email, password);
   }
   function signUp(email: string, password: string, username: string) {

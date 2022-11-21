@@ -2,10 +2,10 @@ import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { alpha } from "@mui/material/styles";
 import { toast, ToastContainer } from "react-toastify";
-import { deleteSelectedProducts } from "../../../helpers/ProductsPageHelpers";
+import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { IProducts } from "../../../Interfaces";
-import { setOwnProducts } from "../../../redux/features/productsSlice";
+import { setDeletedProductIds } from "../../../redux/features/productsSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
@@ -18,19 +18,19 @@ interface EnhancedTableToolbarProps {
 
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const dispatch = useAppDispatch();
-  const { numSelected, selectedProducts, setSelectedId, data } = props;
+  const { numSelected, selectedProducts, setSelectedId } = props;
 
   const deleteHandler = async () => {
     const confirmAction = window.confirm(
       "Are you sure about deleting selected products ?"
     );
     if (confirmAction) {
-      const filteredData = deleteSelectedProducts(data, selectedProducts);
+      // const filteredData = deleteSelectedProducts(data, selectedProducts);
       toast.success("Products deleted successfully", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
-      dispatch(setOwnProducts(filteredData));
+      dispatch(setDeletedProductIds(selectedProducts));
       setSelectedId([]);
     }
     setSelectedId([]);

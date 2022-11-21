@@ -3,15 +3,23 @@ import React from "react";
 import { sidebarData } from "./SidebarData";
 import IconWrapper from "./IconWrapper";
 import { NavLink } from "react-router-dom";
+import "./sidebar-styles.scss";
 
-type Props = {};
+type Props = {
+  handleDrawerToggle: () => void;
+};
 
-const Sidebar = (props: Props) => {
+const Sidebar = ({ handleDrawerToggle }: Props) => {
   return (
     <div>
       <List>
         {sidebarData.map((itam, index) => (
-          <ListItem key={itam.name} disablePadding>
+          <ListItem
+            key={itam.name}
+            disablePadding
+            onClick={handleDrawerToggle}
+            className="list-item"
+          >
             <NavLink to={itam.route} className="linkSidebar">
               <div className="icon">
                 <IconWrapper icon={itam.icon} />

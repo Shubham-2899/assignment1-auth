@@ -5,16 +5,15 @@
   flex-direction: column;
   align-items: center;
   max-width: 400px;
-}
+  span {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: red;
+    padding: 5px 0px 10px 16px;
+  }
 
-span {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  color: red;
-  padding: 5px 0px 10px 16px;
-}
-
-.formBtn {
-  margin: 24px 0 16px 0 !important;
-  text-transform: uppercase;
+  .formBtn {
+    margin: 24px 0 16px 0 !important;
+    text-transform: uppercase;
+  }
 }

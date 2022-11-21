@@ -9,9 +9,9 @@ export const sidebarData = [
     route: "/products",
     icon: "Inventory",
   },
-  {
-    name: "Home",
-    route: "/home",
-    icon: "Home",
-  },
+  // {
+  //   name: "Home",
+  //   route: "/home",
+  //   icon: "Home",
+  // },
 ];

@@ -24,6 +24,7 @@ type ProductsState = {
   filter: filterObject;
   ownProductsAPIData: IProducts[];
   ownFilters: string[];
+  deletedOwnProducts: number[];
 };
 
 const initialFilter: filterObject = {
@@ -38,6 +39,7 @@ const initialState: ProductsState = {
   filter: initialFilter,
   ownProductsAPIData: [],
   ownFilters: [],
+  deletedOwnProducts: [],
 };
 
 const productsSlice = createSlice({
@@ -64,6 +66,12 @@ const productsSlice = createSlice({
     resetOwnFilters: (state) => {
       state.ownFilters = [];
     },
+    setDeletedProductIds: (state, action) => {
+      state.deletedOwnProducts = action.payload;
+    },
+    resetDeletedProductIds: (state) => {
+      state.deletedOwnProducts = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state) => {
@@ -87,6 +95,8 @@ export const {
   resetOwnFilters,
   resetOwnProducts,
   removeOwnFilter,
+  setDeletedProductIds,
+  resetDeletedProductIds,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

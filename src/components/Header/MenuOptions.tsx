@@ -10,6 +10,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import {
+  resetDeletedProductIds,
+  resetOwnFilters,
+} from "../../redux/features/productsSlice";
 
 type Props = {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
@@ -26,10 +31,14 @@ const MenuOptions = ({
 }: Props) => {
   const { logOut, user, login, setLogin } = useUserAuth();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const handleLogOut = async () => {
     try {
       await logOut();
-      sessionStorage.removeItem("Auth Token");
+      localStorage.removeItem("Auth Token");
+      localStorage.removeItem("user");
+      dispatch(resetDeletedProductIds());
+      dispatch(resetOwnFilters());
       setLogin(false);
       navigate("/");
     } catch (error) {

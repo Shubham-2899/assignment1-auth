@@ -13,15 +13,23 @@ import Checkbox from "@mui/material/Checkbox";
 import { IProducts } from "../../../Interfaces";
 import EnhancedTableHead from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import { deleteSelectedProducts } from "../../../helpers/ProductsPageHelpers";
 
 type Props = {
   data: IProducts[];
 };
 
 export default function EnhancedTable({ data }: Props) {
+  const { deletedOwnProducts } = useAppSelector((state) => state.products);
   const [selectedId, setSelectedId] = React.useState<number[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const filteredData =
+    deletedOwnProducts.length > 0
+      ? deleteSelectedProducts(data, deletedOwnProducts)
+      : data;
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -87,10 +95,10 @@ export default function EnhancedTable({ data }: Props) {
             <EnhancedTableHead
               numSelected={selectedId.length}
               onSelectAllClick={handleSelectAllClick}
-              rowCount={data.length}
+              rowCount={filteredData.length}
             />
             <TableBody>
-              {data
+              {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.id);
@@ -147,7 +155,7 @@ export default function EnhancedTable({ data }: Props) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 15]}
           component="div"
-          count={data.length}
+          count={filteredData.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
