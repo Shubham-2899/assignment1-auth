@@ -9,15 +9,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-
 import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
 import { Link } from "react-router-dom";
 import MenuOptions from "./MenuOptions";
 import { useUserAuth } from "../../context/UserAuthContext";
 import Sidebar from "../Sidebar/Sidebar";
 import MenuIcon from "@mui/icons-material/Menu";
+import "./header-styles.scss";
 const drawerWidth = 200;
-const appbarHeight = 65;
+
 const Header = () => {
   const { login, setLogin } = useUserAuth();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -46,23 +46,25 @@ const Header = () => {
 
   return (
     <>
-      <AppBar sx={{ background: "#063970", height: appbarHeight }}>
-        <Toolbar>
+      <AppBar classes={{ root: "appbar" }}>
+        <Toolbar sx={{ paddingLeft: "0px" }}>
           {matches ? (
-            <Button onClick={handleDrawerToggle} sx={{ color: "white" }}>
-              <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} />
+            <Button onClick={handleDrawerToggle}>
+              <AddBusinessRoundedIcon className="header-icon" />
             </Button>
           ) : (
-            <Button onClick={handleDrawerToggle} sx={{ color: "white" }}>
-              <MenuIcon sx={{ transform: "scale(2)" }} />
+            <Button onClick={handleDrawerToggle}>
+              <MenuIcon className="header-icon" />
             </Button>
           )}
 
           {login ? (
             <Box
               component="nav"
-              sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-              aria-label="mailbox folders"
+              sx={{
+                width: { sm: drawerWidth, md: "0px" },
+                flexShrink: { sm: 0 },
+              }}
             >
               <Drawer
                 variant="temporary"
@@ -70,12 +72,8 @@ const Header = () => {
                 onClose={handleDrawerToggle}
                 sx={{
                   display: { xs: "block", sm: "none" },
-                  "& .MuiDrawer-paper": {
-                    boxSizing: "border-box",
-                    width: drawerWidth,
-                    marginTop: `${appbarHeight}px`,
-                  },
                 }}
+                classes={{ paper: "MuiDrawer-paper" }}
               >
                 <Sidebar handleDrawerToggle={handleDrawerToggle} />
               </Drawer>
@@ -83,19 +81,18 @@ const Header = () => {
                 variant="permanent"
                 sx={{
                   display: { xs: "none", sm: "block" },
-                  "& .MuiDrawer-paper": {
-                    boxSizing: "border-box",
-                    width: drawerWidth,
-                    marginTop: `${appbarHeight}px`,
-                  },
                 }}
+                classes={{ paper: "MuiDrawer-paper" }}
                 open
               >
                 <Sidebar handleDrawerToggle={handleDrawerToggle} />
               </Drawer>
             </Box>
           ) : null}
-          <Typography sx={{ fontSize: "2rem", paddingLeft: "8%" }}>
+          <Typography
+            variant="body1"
+            sx={{ fontSize: "2rem", paddingLeft: "10px" }}
+          >
             Products
           </Typography>
           {login ? (

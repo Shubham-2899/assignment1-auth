@@ -23,6 +23,8 @@ type Props = {
   setAnchorElUser: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
 };
 
+export const logoutChannel = new BroadcastChannel("logout");
+
 const MenuOptions = ({
   handleOpenUserMenu,
   anchorElUser,
@@ -34,6 +36,7 @@ const MenuOptions = ({
   const dispatch = useAppDispatch();
   const handleLogOut = async () => {
     try {
+      logoutChannel.postMessage("Logout");
       await logOut();
       localStorage.removeItem("Auth Token");
       localStorage.removeItem("user");

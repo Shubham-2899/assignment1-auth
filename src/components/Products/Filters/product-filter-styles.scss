@@ -7,6 +7,10 @@
     text-decoration: underline;
   }
 }
+.filters-list {
+  padding: 0px;
+  margin: 0px;
+}
 @media (min-width: 0px) and (max-width: 600px) {
   .filters-list {
     display: flex;

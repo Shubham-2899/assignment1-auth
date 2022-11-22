@@ -6,8 +6,8 @@ body {
   min-height: 100vh;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll !important;
 }
-
 .btn {
   text-decoration: none;
   color: white;

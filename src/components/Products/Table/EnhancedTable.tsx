@@ -83,7 +83,7 @@ export default function EnhancedTable({ data }: Props) {
 
   return (
     <Box sx={{ width: "100%", narginTop: "100px" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+      <Paper sx={{ width: "100%", mb: 2 }} elevation={3}>
         <EnhancedTableToolbar
           numSelected={selectedId.length}
           selectedProducts={selectedId}

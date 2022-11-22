@@ -21,9 +21,10 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const { logIn, setLogin, user } = useUserAuth();
+  const { logIn, setLogin } = useUserAuth();
 
   const [password, setPassword] = useState("");
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -32,8 +33,8 @@ const Signin = () => {
       const res = await logIn(email, password);
       let token = (res?.user as unknown as OAuthCredential).accessToken;
       token && localStorage.setItem("Auth Token", token);
-      const userData = JSON.stringify(user);
-      userData && localStorage.setItem("user", userData);
+      const userData = JSON.stringify(res?.user);
+      if (userData) localStorage.setItem("user", userData);
       setLogin(true);
       navigate("/dashboard");
     } catch (err) {

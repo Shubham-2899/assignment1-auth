@@ -1,0 +1,17 @@
+$drawerWidth: 200px;
+$appbarHeight: 65px;
+
+.appbar {
+  background-color: #063970 !important;
+  height: $appbarHeight;
+}
+.header-icon {
+  transform: scale(2);
+  color: white;
+}
+
+.MuiDrawer-paper {
+  box-sizing: border-box;
+  width: $drawerWidth;
+  margin-top: $appbarHeight;
+}

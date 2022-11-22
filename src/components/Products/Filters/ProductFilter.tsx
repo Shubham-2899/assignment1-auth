@@ -41,9 +41,9 @@ const ProductFilter = (props: Props) => {
   }, [ownFilters]);
 
   return (
-    <Paper sx={{ height: `calc(100% - 16px)` }}>
+    <Paper sx={{ height: `calc(100% - 16px)` }} elevation={3}>
       <h4 style={{ margin: "0px", padding: "10px" }}>Filters</h4>
-      <ul style={{ padding: "0px", margin: "0px" }} className="filters-list">
+      <ul className="filters-list">
         {isLoading ? (
           <Loading />
         ) : (
