@@ -10,14 +10,9 @@
   @include chart-container-border();
 }
 
-.pieChartContainer {
-  max-width: 500px;
-  height: 550px;
-  @include chart-container-border();
-}
-
+.pieChartContainer,
 .doughnutContainer {
-  max-width: 510px;
+  max-width: 500px;
   height: 550px;
   @include chart-container-border();
 }
