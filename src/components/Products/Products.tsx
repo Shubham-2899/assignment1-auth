@@ -74,7 +74,7 @@ const Products = () => {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              <Grid item xs={4} sm={3} md={3}>
+              <Grid item xs={4} sm={8} md={3}>
                 <div className="searchContainer">
                   <Search className="searchIcon" />
                   <input
@@ -85,10 +85,10 @@ const Products = () => {
                   />
                 </div>
               </Grid>
-              <Grid item xs={4} sm={5} md={9}>
+              <Grid item xs={4} sm={8} md={9}>
                 <div className="gridItem">
                   <FilterChip />
-                  <div style={{ alignSelf: "center" }}>
+                  <div className="resetBtn">
                     <button
                       onClick={() => {
                         dispatch(resetOwnFilters());
@@ -101,10 +101,10 @@ const Products = () => {
                   </div>
                 </div>
               </Grid>
-              <Grid item xs={4} sm={2} md={3}>
+              <Grid item xs={4} sm={8} md={3}>
                 <ProductFilter />
               </Grid>
-              <Grid item xs={4} sm={6} md={9}>
+              <Grid item xs={4} sm={8} md={9}>
                 <EnhancedTable data={ownProductsAPIData} />
               </Grid>
             </Grid>

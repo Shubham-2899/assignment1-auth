@@ -33,6 +33,11 @@
 }
 .gridItem {
   display: flex;
+  flex-direction: column;
+  text-align: center;
+  .resetBtn {
+    align-self: center;
+  }
 }
 
 @media (min-width: 0px) and (max-width: 600px) {
@@ -47,11 +52,6 @@
     padding-left: 30px;
     .title {
       font-size: 24px !important;
-    }
-    .gridItem {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
     }
     .searchContainer {
       width: 100%;
@@ -71,16 +71,33 @@
     width: calc(100% - 200px);
     padding-left: 25px;
   }
+  .searchContainer {
+    width: 100%;
+  }
 }
 @media (min-width: 900px) and (max-width: 1200px) {
   .productContainer,
   .dashboardContainer {
     width: calc(100% - 200px);
   }
+  .gridItem {
+    display: flex;
+    flex-direction: row;
+    .resetBtn {
+      align-self: end;
+    }
+  }
 }
 @media (min-width: 1200px) {
   .productContainer,
   .dashboardContainer {
     margin-left: 100px;
+  }
+  .gridItem {
+    display: flex;
+    flex-direction: row;
+    .resetBtn {
+      align-self: end;
+    }
   }
 }

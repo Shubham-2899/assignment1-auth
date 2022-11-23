@@ -10,8 +10,9 @@
 .filters-list {
   padding: 0px;
   margin: 0px;
+  cursor: pointer;
 }
-@media (min-width: 0px) and (max-width: 600px) {
+@media (min-width: 0px) and (max-width: 900px) {
   .filters-list {
     display: flex;
     flex-direction: row;
